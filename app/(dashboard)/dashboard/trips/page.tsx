@@ -1,10 +1,15 @@
+import DashboardHeader from '@/features/dashboard/DashboardHeader'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>
-      <h1>All Trips</h1>
-    </div>
+    <DashboardHeader
+      title="Add new Trips"
+      description="View and generate AI travel plans"
+      showButton
+      buttonLabel="Create a trip"
+
+    />
   )
 }
 

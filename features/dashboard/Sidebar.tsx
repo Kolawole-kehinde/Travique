@@ -8,7 +8,7 @@ import React from 'react'
 const links = [
   { name: "Dashboard", icon: Home, href: "/dashboard" },
   { name: "All Users", icon: Users, href: "/dashboard/users" },
-  { name: "All Trips", icon: Map, href: "/dashboard/trips" },
+  { name: "AI Trips", icon: Map, href: "/dashboard/trips" },
 ];
 
 const Sidebar = () => {

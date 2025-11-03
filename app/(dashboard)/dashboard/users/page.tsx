@@ -1,10 +1,15 @@
+import DashboardHeader from '@/features/dashboard/DashboardHeader'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>
-      <h1> All Users</h1>
-    </div>
+    <DashboardHeader
+      title="Manage Users"
+      description="Filter, sort, and access detailed user profiles"
+      showButton
+      buttonLabel="Add new user"
+
+    />
   )
 }
 
