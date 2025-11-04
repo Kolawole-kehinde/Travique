@@ -100,7 +100,7 @@ const DashboardStats = () => {
               </div>
 
               {/* Right Section (Chart) */}
-              <div className="w-[180px] h-[50px]">
+              <div className="w-[180px] h-[50px] -mb-1">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={item.data}>
                     <Area
