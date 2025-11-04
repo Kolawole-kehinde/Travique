@@ -64,7 +64,7 @@ const DashboardStats = () => {
       {stats.map((item) => (
         <Card
           key={item.title}
-          className="w-full shadow-sm flex flex-col rounded-[20px]"
+          className="w-full shadow-sm flex flex-col rounded-[20px] p-4"
         >
           <CardHeader className="pb-2">
             <CardTitle className="font-medium text-base leading-6 text-[#2E2C48]">
@@ -100,7 +100,7 @@ const DashboardStats = () => {
               </div>
 
               {/* Right Section (Chart) */}
-              <div className="w-[180px] h-[50px] -mb-1">
+              <div className="w-[130px] lg:w-[170px] h-[50px] -mb-1">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={item.data}>
                     <Area

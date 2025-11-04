@@ -14,7 +14,7 @@ const links = [
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <aside className='w-[270px] fixed'>
+    <aside className='w-[270px] fixed '>
       <div className='flex items-center gap-2 py-9 px-[29px] border-b border-[#ECF2EF]'>
         <Image
           src="/images/logo.png"
