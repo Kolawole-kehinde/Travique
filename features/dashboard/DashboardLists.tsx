@@ -83,7 +83,9 @@ export default function DashboardLists() {
                     width={36}
                     height={36}
                     className="rounded-full"
+                    unoptimized
                   />
+
                   <span className="font-medium text-[#1F1F36] text-sm">
                     {user.name}
                   </span>
@@ -123,8 +125,10 @@ export default function DashboardLists() {
                     alt={trip.name}
                     width={36}
                     height={36}
-                    className="rounded-full object-cover"
+                    className="rounded-full"
+                    unoptimized
                   />
+
                   <span className="font-medium text-[#1F1F36] text-sm">
                     {trip.name}
                   </span>
