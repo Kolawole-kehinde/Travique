@@ -2,6 +2,7 @@ import React from 'react'
 import DashboardStats from './DashboardStats'
 import TripsSection from './TripsSection'
 import DashboardCharts from './DashboardCharts'
+import DashboardLists from './DashboardLists'
 
 const DashbordComponents = () => {
   return (
@@ -9,6 +10,7 @@ const DashbordComponents = () => {
        <DashboardStats/>
        <TripsSection/>
        <DashboardCharts/>
+       <DashboardLists/>
     </main>
   )
 }
