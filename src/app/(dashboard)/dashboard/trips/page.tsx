@@ -1,4 +1,4 @@
-import TravelForm from '@/src/components/TravelForm'
+import TravelForm from '@/src/components/CreateTripsForm'
 import DashboardHeader from '@/src/features/dashboard/DashboardHeader'
 import React from 'react'
 
