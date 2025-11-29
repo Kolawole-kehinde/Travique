@@ -1,5 +1,5 @@
-import DashboardHeader from '@/features/dashboard/DashboardHeader'
-import DashboardUserTable from '@/features/dashboard/users/DashboardUserTable'
+import DashboardHeader from '@/src/features/dashboard/DashboardHeader'
+import DashboardUserTable from '@/src/features/dashboard/users/DashboardUserTable'
 import React from 'react'
 
 const page = () => {

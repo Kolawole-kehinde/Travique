@@ -1,11 +1,11 @@
 "use client";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader } from "@/src/components/ui/card";
+import { Badge } from "@/src/components/ui/badge";
 import { MapPin } from "lucide-react";
 import Image from "next/image";
 import clsx from "clsx";
-import { trips } from "@/contants/trips";
+import { trips } from "@/src/contants/trips";
 
 
 

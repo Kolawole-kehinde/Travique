@@ -1,5 +1,5 @@
-import DashboardHeader from "@/features/dashboard/DashboardHeader";
-import DashbordComponents from "@/features/dashboard/DashbordComponents";
+import DashboardHeader from "@/src/features/dashboard/DashboardHeader";
+import DashbordComponents from "@/src/features/dashboard/DashbordComponents";
 
 export default function DashboardPage({ }) {
   return (

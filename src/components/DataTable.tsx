@@ -8,8 +8,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
+} from "@/src/components/ui/table";
+import { Button } from "@/src/components/ui/button";
 import { cn } from "@/lib/utils";
 
 interface Column<T> {

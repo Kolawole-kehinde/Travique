@@ -1,6 +1,6 @@
 "use client";
 
-import { DataTable } from "@/components/DataTable";
+import { DataTable } from "@/src/components/DataTable";
 import Image from "next/image";
 import { Trash2 } from "lucide-react";
 
@@ -142,7 +142,7 @@ export default function DashboardUserTable() {
       label: "STATUS",
       render: (user: any) => (
         <span
-          className={`px-3 py-1 rounded-md text-xs font-medium ${
+          className={`px-3 py-1 rounded-full text-xs font-medium ${
             user.status === "Admin"
               ? "bg-blue-100 text-[#256FF1]"
               : "bg-green-100 text-green-600"
