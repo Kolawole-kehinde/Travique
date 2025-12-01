@@ -1,53 +1,38 @@
 "use client";
 
-import { Controller } from "react-hook-form";
-import {
-  FormItem,
-  FormLabel,
-  FormControl,
-} from "@/components/ui/form";
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-interface Props {
-  control: any;
-  name: string;
+interface Option {
+  value: string;
   label: string;
-  placeholder?: string;
-  options: string[];
 }
 
-export function CustomSelect({ control, name, label, placeholder, options }: Props) {
-  return (
-    <Controller
-      control={control}
-      name={name}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>{label}</FormLabel>
-          <Select onValueChange={field.onChange} value={field.value}>
-            <FormControl>
-              <SelectTrigger>
-                <SelectValue placeholder={placeholder} />
-              </SelectTrigger>
-            </FormControl>
+interface SelectBoxProps {
+  title: string;
+  options: Option[];
+  selected: string;
+  onSelect: (value: string) => void;
+}
 
-            <SelectContent>
-              {options.map((opt) => (
-                <SelectItem key={opt} value={opt}>
-                  {opt}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </FormItem>
-      )}
-    />
+export default function SelectBox({ title, options, selected, onSelect }: SelectBoxProps) {
+  return (
+    <div>
+      <h3 className="text-sm font-medium mb-3 opacity-80">{title}</h3>
+
+      <div className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
+        {options.map((option) => {
+          const active = selected === option.value;
+
+          return (
+            <div
+              key={option.value}
+              className={`px-4 py-3 cursor-pointer transition border-b border-white/5 last:border-none
+                ${active ? "bg-white/10 text-blue-400" : "hover:bg-white/5"}`}
+              onClick={() => onSelect(option.value)}
+            >
+              {option.label}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }

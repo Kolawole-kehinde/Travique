@@ -12,23 +12,35 @@ import {
 import { Button } from "@/src/components/ui/button";
 import { cn } from "@/lib/utils";
 
-interface Column<T> {
-  key: keyof T;
+/**
+ * Extra allowed custom column keys.
+ */
+export type ExtraColumnKey = "action" | "actions" | "menu";
+
+/**
+ * Table Column Type
+ */
+export interface Column<T> {
+  key: keyof T | ExtraColumnKey;
   label: string;
-  render?: (item: T) => React.ReactNode;
   className?: string;
+  render?: (row: T) => React.ReactNode;
 }
 
-interface DataTableProps<T> {
+/**
+ * DataTable Component
+ */
+export interface DataTableProps<T> {
+  title?: string;
   data: T[];
   columns: Column<T>[];
-  title?: string;
   currentPage?: number;
   totalPages?: number;
   onPageChange?: (page: number) => void;
 }
 
 export function DataTable<T>({
+  title,
   data,
   columns,
   currentPage = 1,
@@ -37,6 +49,10 @@ export function DataTable<T>({
 }: DataTableProps<T>) {
   return (
     <div className="bg-white shadow-sm rounded-2xl py-4 border border-gray-100">
+      {title && (
+        <h2 className="px-4 pb-4 text-xl font-semibold text-gray-800">{title}</h2>
+      )}
+
       <div className="rounded-lg border border-gray-100 overflow-hidden">
         <Table>
           <TableHeader>
@@ -53,30 +69,40 @@ export function DataTable<T>({
           </TableHeader>
 
           <TableBody>
-            {data.map((item, i) => (
-              <TableRow
-                key={i}
-                className={cn(
-                  "hover:bg-gray-50 transition-colors",
-                  i % 2 === 1 && "bg-gray-50/50"
-                )}
-              >
-                {columns.map((col) => (
-                  <TableCell
-                    key={String(col.key)}
-                    className="py-3 text-sm text-[#1F1F36]"
-                  >
-                    {col.render ? col.render(item) : String(item[col.key])}
-                  </TableCell>
-                ))}
+            {data.length === 0 ? (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="py-6 text-center text-gray-500"
+                >
+                  No data available
+                </TableCell>
               </TableRow>
-            ))}
+            ) : (
+              data.map((item, i) => (
+                <TableRow
+                  key={i}
+                  className={cn(
+                    "hover:bg-gray-50 transition-colors",
+                    i % 2 === 1 && "bg-gray-50/50"
+                  )}
+                >
+                  {columns.map((col) => (
+                    <TableCell key={String(col.key)} className="py-3 text-sm">
+                      {col.render
+                        ? col.render(item)
+                        : String(item[col.key as keyof T] ?? "")}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
       </div>
 
       {/* Pagination */}
-      {onPageChange && (
+      {onPageChange && totalPages > 1 && (
         <div className="flex items-center px-4 justify-between mt-4 text-sm">
           <Button
             variant="outline"
@@ -94,9 +120,8 @@ export function DataTable<T>({
                 size="sm"
                 variant={i + 1 === currentPage ? "default" : "outline"}
                 className={cn(
-                  i + 1 === currentPage
-                    ? "bg-[#256FF1] text-white hover:bg-[#256FF1]/90"
-                    : ""
+                  i + 1 === currentPage &&
+                    "bg-[#256FF1] text-white hover:bg-[#256FF1]/90"
                 )}
                 onClick={() => onPageChange(i + 1)}
               >

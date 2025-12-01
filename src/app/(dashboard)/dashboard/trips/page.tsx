@@ -13,7 +13,7 @@ const page = () => {
 
     />
 
-      <div className="min-h-screen bg-gray-50 p-8">
+      <div className="mt-2.5 w-full max-w-3xl px-4 lg:px-8 mx-auto">
       <TravelForm />
     </div>
     </main>

@@ -1,126 +1,26 @@
 "use client";
 
-import { DataTable } from "@/src/components/DataTable";
+import { DataTable, Column } from "@/src/components/DataTable";
 import Image from "next/image";
 import { Trash2 } from "lucide-react";
+import { users } from "@/src/contants/users";
 
-const users = [
-  {
-    id: 1,
-    name: "James Anderson",
-    email: "olivia@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 12,
-    status: "User",
-    avatar: "https://randomuser.me/api/portraits/men/11.jpg",
-  },
-  {
-    id: 2,
-    name: "Michael Johnson",
-    email: "phoenix@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 21,
-    status: "User",
-    avatar: "https://randomuser.me/api/portraits/men/22.jpg",
-  },
-  {
-    id: 3,
-    name: "David Brown",
-    email: "lana@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 15,
-    status: "Admin",
-    avatar: "https://randomuser.me/api/portraits/men/33.jpg",
-  },
-  {
-    id: 4,
-    name: "David Brown",
-    email: "lana@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 15,
-    status: "Admin",
-    avatar: "https://randomuser.me/api/portraits/men/33.jpg",
-  },
-  {
-    id: 5,
-    name: "David Brown",
-    email: "lana@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 15,
-    status: "User",
-    avatar: "https://randomuser.me/api/portraits/men/33.jpg",
-  },
-  {
-    id: 6,
-    name: "David Brown",
-    email: "lana@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 15,
-    status: "User",
-    avatar: "https://randomuser.me/api/portraits/men/33.jpg",
-  },
-  {
-    id: 7,
-    name: "David Brown",
-    email: "lana@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 15,
-    status: "User",
-    avatar: "https://randomuser.me/api/portraits/men/33.jpg",
-  },
-  {
-    id: 8,
-    name: "David Brown",
-    email: "lana@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 15,
-    status: "User",
-    avatar: "https://randomuser.me/api/portraits/men/33.jpg",
-  },
-  {
-    id: 9,
-    name: "David Brown",
-    email: "lana@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 15,
-    status: "User",
-    avatar: "https://randomuser.me/api/portraits/men/33.jpg",
-  },
-  {
-    id: 10,
-    name: "David Brown",
-    email: "lana@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 15,
-    status: "User",
-    avatar: "https://randomuser.me/api/portraits/men/33.jpg",
-  },
-  {
-    id: 11,
-    name: "David Brown",
-    email: "lana@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 15,
-    status: "User",
-    avatar: "https://randomuser.me/api/portraits/men/33.jpg",
-  },
-  {
-    id: 12,
-    name: "David Brown",
-    email: "lana@jsmastery.pro",
-    joined: "Jan 6, 2022",
-    itinerary: 15,
-    status: "User",
-    avatar: "https://randomuser.me/api/portraits/men/33.jpg",
-  },
-];
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  joined: string;
+  itinerary: number;
+  status: "User" | "Admin";
+  avatar: string;
+}
 
 export default function DashboardUserTable() {
-  const columns = [
+  const columns: Column<User>[] = [
     {
       key: "name",
       label: "NAME",
-      render: (user: any) => (
+      render: (user) => (
         <div className="flex items-center gap-3">
           <Image
             src={user.avatar}
@@ -140,7 +40,7 @@ export default function DashboardUserTable() {
     {
       key: "status",
       label: "STATUS",
-      render: (user: any) => (
+      render: (user) => (
         <span
           className={`px-3 py-1 rounded-full text-xs font-medium ${
             user.status === "Admin"
@@ -153,7 +53,7 @@ export default function DashboardUserTable() {
       ),
     },
     {
-      key: "action",
+      key: "avatar", // dummy column key (must match User keys)
       label: "",
       render: () => (
         <button className="p-2 hover:bg-gray-100 rounded-lg">
@@ -166,7 +66,7 @@ export default function DashboardUserTable() {
   return (
     <DataTable
       title="Users Table"
-      data={users}
+      data={users as User[]}
       columns={columns}
       currentPage={1}
       totalPages={6}
