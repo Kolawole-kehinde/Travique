@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { Suspense } from 'react'
+import AuthLayout from '../features/auth/AuthLayout'
+import AuthForm from '../features/auth/AuthForm'
 
 const Homepage = () => {
   return (
-    <div>
-      <h1>Homepage</h1>
-    </div>
+   <AuthLayout descrition="Sign in with Google to explore AI-generated itineraries, trending destinations, and much more">
+      <Suspense fallback={<div>Loading...</div>}>
+        <AuthForm />
+      </Suspense>
+   </AuthLayout>
   )
 }
 
