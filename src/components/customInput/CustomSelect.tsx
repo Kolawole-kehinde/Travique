@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Select,
   SelectContent,
@@ -9,29 +8,27 @@ import {
 } from "@/components/ui/select";
 import { ReactNode } from "react";
 import { Control, FieldValues, Path, useController } from "react-hook-form";
-import { cn } from "@/lib/utils";
 
-interface CustomSelectProps<T extends FieldValues> {
+interface CustomInputProps<T extends FieldValues> {
   label?: string;
   placeholder: string;
   name: Path<T>;
   control: Control<T>;
   disabled?: boolean;
-  id?: string;
+  id: string;
   options: Array<{ value: string; label: string; icon?: ReactNode }>;
+  selectContentClassName?: string;
 }
 
 const CustomSelect = <T extends FieldValues>({
-  label,
   name,
   control,
   placeholder,
   id,
   disabled,
   options,
-}: CustomSelectProps<T>) => {
-  const generatedId = id || `select-${name}`;
-
+  selectContentClassName = "w-[102px]",
+}: CustomInputProps<T>) => {
   const {
     field,
     fieldState: { error },
@@ -41,38 +38,28 @@ const CustomSelect = <T extends FieldValues>({
   });
 
   return (
-    <div className="relative w-full space-y-1">
-      {label && (
-        <label htmlFor={generatedId} className="text-sm text-black/75">
-          {label}
-        </label>
-      )}
-
-      <Select value={field.value} onValueChange={field.onChange} disabled={disabled}>
+    <div className="transition-all duration-400 hover:translate-y-[-2px] h-12">
+      <Select
+        value={field.value}
+        onValueChange={field.onChange}
+        disabled={disabled}
+      >
         <SelectTrigger
-          id={generatedId}
-          className={cn(
-            "w-full h-12 border border-gray-300 rounded-xl px-4 text-base bg-white"
-          )}
+          id={id}
+          className={`rounded-xl transition-all duration-400 font-medium border border-[#888888] text-[#888888] `}
         >
-          <SelectValue placeholder={placeholder} />
+          <SelectValue placeholder={placeholder} className="text-[#888888]" />
         </SelectTrigger>
-
-        <SelectContent className="bg-white border rounded-xl shadow-xl py-3 px-4 space-y-3">
+        <SelectContent className={selectContentClassName}>
           {options.map((option) => (
             <SelectItem key={option.value} value={option.value}>
-              <div className="flex items-center gap-2">
-                {option.icon && (
-                  <span className="text-xl">{option.icon}</span>
-                )}
-                <span className="font-medium">{option.label}</span>
-              </div>
+              {option.icon && option.icon}
+              {option.label}
             </SelectItem>
           ))}
         </SelectContent>
       </Select>
-
-      {error && <p className="text-sm text-red-600">{error.message}</p>}
+      {error && <p className="mt-1 text-sm text-red-500">{error.message}</p>}
     </div>
   );
 };
