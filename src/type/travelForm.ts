@@ -1,4 +1,11 @@
-// src/constants/tripOptions.ts
+export const COUNTRIES = [
+  { value: "HR", label: " Croatia" },
+  { value: "NG", label: "Nigeria" },
+  { value: "AU", label: "Australia" },
+  { value: "FR", label: "France" },
+  { value: "KE", label: "Kenya" },
+];
+
 export const GROUP_TYPES = [
   { value: "solo", label: "Solo" },
   { value: "couple", label: "Couple" },
