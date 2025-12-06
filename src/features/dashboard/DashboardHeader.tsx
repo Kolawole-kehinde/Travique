@@ -48,7 +48,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
       {showButton && (
         <Button
           onClick={onButtonClick ?? (() => router.push("/dashboard/trips"))}
-          className="bg-primary hover:bg-blue-700 text-white rounded-[8px] border border-[#ECF2EF] w-[233px] h-11 py-3 px-2.5 flex items-center justify-center gap-2 text-base font-semibold leading-5"
+          className="bg-primary hover:bg-blue-700 text-white rounded-lg border border-[#ECF2EF] w-[233px] h-11 py-3 px-2.5 flex items-center justify-center gap-2 text-base font-semibold leading-5"
         >
           {icon}
           {buttonLabel}

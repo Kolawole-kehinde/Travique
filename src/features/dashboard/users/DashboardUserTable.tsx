@@ -13,6 +13,7 @@ export interface User {
   itinerary: number;
   status: "User" | "Admin";
   avatar: string;
+  action: string;
 }
 
 export default function DashboardUserTable() {
@@ -37,6 +38,7 @@ export default function DashboardUserTable() {
     { key: "email", label: "EMAIL ADDRESS" },
     { key: "joined", label: "DATE JOINED" },
     { key: "itinerary", label: "ITINERARY CREATED" },
+
     {
       key: "status",
       label: "STATUS",
@@ -52,11 +54,15 @@ export default function DashboardUserTable() {
         </span>
       ),
     },
+
     {
-      key: "avatar", // dummy column key (must match User keys)
-      label: "",
-      render: () => (
-        <button className="p-2 hover:bg-gray-100 rounded-lg">
+      key: "action",
+      label: "ACTION",
+      render: (user) => (
+        <button
+          className="p-2 hover:bg-gray-100 rounded-lg"
+          onClick={() => console.log("Delete user:", user.id)}
+        >
           <Trash2 className="h-4 w-4 text-gray-500" />
         </button>
       ),
